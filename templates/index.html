@@ -5,7 +5,9 @@
 
 <ul>
 {% for i in items %}
-    <li>{{ i }}</li>
+    <li>
+        {{ i }} <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
+    </li>
 {% endfor %}
 </ul>
 {% if not items %}

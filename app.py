@@ -13,5 +13,10 @@ def index():
         return redirect("/")
     return render_template("index.html", items=shopping_list)
 
+@app.route("/delete/<int:index>")
+def delete(index):
+    shopping_list.pop(index)
+    return redirect("/")
+
 if __name__ == "__main__":
     app.run(debug=True)
