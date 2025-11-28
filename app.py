@@ -41,5 +41,18 @@ def toggle(index):
     save()
     return redirect("/")
 
+# Edycja pozycji
+@app.route("/edit/<int:index>", methods=["GET", "POST"])
+def edit(index):
+    item = shopping_list[index]
+    if request.method == "POST":
+        new_name = request.form.get("item")
+        new_category = request.form.get("category")
+        if new_name:
+            shopping_list[index]["name"] = new_name
+            shopping_list[index]["category"] = new_category
+        return redirect("/")
+    return render_template("edit.html", item=item, index=index)
+
 if __name__ == "__main__":
     app.run(debug=True)

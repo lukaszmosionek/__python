@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edycja pozycji</title>
+</head>
+<body>
+    <h1>Edycja produktu</h1>
+    <form method="post">
+        <input type="text" name="item" value="{{ item.name }}">
+        <select name="category">
+            <option value="Warzywa" {% if item.category == "Warzywa" %}selected{% endif %}>Warzywa</option>
+            <option value="Nabiał" {% if item.category == "Nabiał" %}selected{% endif %}>Nabiał</option>
+            <option value="Pieczywo" {% if item.category == "Pieczywo" %}selected{% endif %}>Pieczywo</option>
+            <option value="Mięso" {% if item.category == "Mięso" %}selected{% endif %}>Mięso</option>
+            <option value="Napoje" {% if item.category == "Napoje" %}selected{% endif %}>Napoje</option>
+            <option value="Chemia" {% if item.category == "Chemia" %}selected{% endif %}>Chemia</option>
+            <option value="Inne" {% if item.category == "Inne" %}selected{% endif %}>Inne</option>
+        </select>
+        <button type="submit">Zapisz</button>
+    </form>
+    <a href="/">Powrót do listy</a>
+</body>
+</html>

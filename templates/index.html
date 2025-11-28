@@ -29,6 +29,7 @@
             ({{ i.category }})
         {% endif %}
 
+        <a href="/edit/{{ loop.index0 }}">Edytuj</a>
         <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
     </li>
 {% endfor %}
