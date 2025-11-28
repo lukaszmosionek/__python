@@ -1,0 +1,13 @@
+<form method="post">
+    <input name="item" placeholder="Dodaj produkt">
+    <button type="submit">Dodaj</button>
+</form>
+
+<ul>
+{% for i in items %}
+    <li>{{ i }}</li>
+{% endfor %}
+</ul>
+{% if not items %}
+    <p>Brak produktów na liście.</p>
+{% endif %}
