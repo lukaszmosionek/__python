@@ -1,8 +1,22 @@
 from flask import Flask, render_template, request, redirect
+import json
+import os
 
 app = Flask(__name__)
 
-shopping_list = []
+def save():
+    with open("data.json", "w") as f:
+        json.dump(shopping_list, f)
+
+def load():
+    global shopping_list
+    if os.path.exists("data.json"):
+        with open("data.json", "r") as f:
+            shopping_list = json.load(f)
+    else:
+        shopping_list = []
+
+load()  # wczytaj przy starcie
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -10,6 +24,7 @@ def index():
         item = request.form.get("item")
         if item:
             shopping_list.append({"name": item, "done": False})
+            save()
         return redirect("/")
     return render_template("index.html", items=shopping_list)
 
