@@ -22,8 +22,9 @@ load()  # wczytaj przy starcie
 def index():
     if request.method == "POST":
         item = request.form.get("item")
+        category = request.form.get("category")
         if item:
-            shopping_list.append({"name": item, "done": False})
+            shopping_list.append({"name": item, "category": category, "done": False})
             save()
         return redirect("/")
     return render_template("index.html", items=shopping_list)
@@ -31,11 +32,13 @@ def index():
 @app.route("/delete/<int:index>") #Usuwanie pozycji z listy
 def delete(index):
     shopping_list.pop(index)
+    save()
     return redirect("/")
 
 @app.route("/toggle/<int:index>") #Oznaczanie jako kupione (checkbox)
 def toggle(index):
     shopping_list[index]["done"] = not shopping_list[index]["done"]
+    save()
     return redirect("/")
 
 if __name__ == "__main__":

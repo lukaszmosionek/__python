@@ -1,5 +1,14 @@
 <form method="post">
     <input name="item" placeholder="Dodaj produkt">
+    <select name="category">
+        <option value="Warzywa">Warzywa</option>
+        <option value="Nabiał">Nabiał</option>
+        <option value="Pieczywo">Pieczywo</option>
+        <option value="Mięso">Mięso</option>
+        <option value="Napoje">Napoje</option>
+        <option value="Chemia">Chemia</option>
+        <option value="Inne">Inne</option>
+    </select>
     <button type="submit">Dodaj</button>
 </form>
 
@@ -14,7 +23,13 @@
             {% endif %}
         </a>
 
-        {{ i.name }} <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
+        {{ i.name }}
+
+        {% if i.category %}
+            ({{ i.category }})
+        {% endif %}
+
+        <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
     </li>
 {% endfor %}
 </ul>
