@@ -6,7 +6,15 @@
 <ul>
 {% for i in items %}
     <li>
-        {{ i }} <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
+        <a href="{{ url_for('toggle', index=loop.index0) }}">
+            {% if i.done %}
+                ✔️
+            {% else %}
+                ⬜
+            {% endif %}
+        </a>
+
+        {{ i.name }} <a href="{{ url_for('delete', index=loop.index0) }}">Usuń</a>
     </li>
 {% endfor %}
 </ul>
